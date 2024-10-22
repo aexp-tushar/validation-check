@@ -4,7 +4,7 @@ with open('values.txt') as f:
     values_list = f.read().splitlines()
 with open('cdaas.txt') as f:
     cdaas_list = f.read().splitlines()
-service_list = ['ESaaS','kafka','Redis','Gridgain','AeroCache','CDaaS']
+service_list = ['ESaaS','Kafka','Redis','Gridgain','AeroCache','CDaaS']
 r = requests.request("GET",'http://lpdosput50093.phx.aexp.com:443/xPaaS_Inventory.json')
 hosts={}
 for service in service_list:
