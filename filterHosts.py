@@ -28,6 +28,7 @@ for server_val in r.json():
                 lst.append(server_val.get('Host'))
                 lst.append(server_val.get('Role'))
                 lst.append(server_val.get('ENV'))
+                lst.append(server_val.get('AimName'))
                 hosts[service][server_val.get('Host')] = lst
 for cdaas_host in cdaas_lst:
     if cdaas_host[0] in values_list:
@@ -53,7 +54,6 @@ for service in hosts.keys():
             with open('host_'+service, 'w+') as file:
                 for val in host_lst:
                     file.write('%s\n' %val)
-            file.close()
 e3_files = "E3_host_*"
 if glob.glob(e3_files):
     print("#########################################Transferring Host files  to E3 Jump Server , please run script post validating here ##################################################")
@@ -81,6 +81,19 @@ for service in hosts.keys():
                     schreg=True
                 if hval[1][1] == "ksql" or hval[1][1] == "KSQL":
                     ksql = True
+rc = False
+abs = False
+asm = False
+gmnt = False 
+for grhost in hosts['Gridgain'].keys():
+    if hosts['Gridgain'][grhost][3] == "Registered Card":
+        rc = True
+    if hosts['Gridgain'][grhost][3] == "Global Treasury Securitization Platform":
+        abs = True
+    if hosts['Gridgain'][grhost][3] == "ES - SUBMISSION MONITOR - AESC - NA":
+        asm = True
+    if hosts['Gridgain'][grhost][3] == "ES - MERCHANT PAYMENT ENGINE":
+        gmnt = True
 for service in hosts.keys():
     if len(hosts[service]) != 0:
         path = "host_"+service
@@ -121,6 +134,28 @@ for service in hosts.keys():
                     print("Running ksql role validation")  
                     os.system('''
                             sshpass -p%(passwd)s ansible all -i host_kafka -u %(ads)s  -m shell -a "systemctl status ksql | grep 'Active'" -bk
+                              ''' % locals())
+            if service == 'Gridgain':
+                print("Validating ",service," hosts")
+                if asm:
+                    print("Running Gridgain ASM validation")
+                    os.system('''
+                          sshpass -p%(passwd)s ansible all -i host_Gridgain -u %(ads)s  -m shell -a "echo $'\nWebconsole status\n' && systemctl status webconsole | grep 'Active'; echo $'\nGridgain-risk status\n' && systemctl status gridgain-risk | grep 'Active';echo $'\nGridgain-ram status\n' && systemctl status gridgain-ram | grep 'Active'" -bk
+                          ''' % locals())
+                if gmnt:
+                    print("Running Gridgain GMNT validation")
+                    os.system('''
+                            sshpass -p%(passwd)s ansible all -i host_Gridgain -u %(ads)s  -m shell -a "echo $'\nGridgain-cluster1.service status\n' && systemctl status gridgain-cluster1.service | grep 'Active'; echo $'\nGridgain-cluster2.service status\n' && systemctl status gridgain-cluster2.service | grep 'Active';echo $'\nWebconsole status\n' && systemctl status webconsole | grep 'Active'; echo $'\nWebagent status\n' && systemctl status webagent | grep 'Active';echo $'\nGridgain-cluster3.service status\n' && systemctl status gridgain-cluster3.service | grep 'Active';echo $'\nGridgain-cluster4.service status\n' && systemctl status gridgain-cluster4.service | grep 'Active'" -bk
+                              ''' % locals())
+                if abs:
+                    print("Running Gridgain ABS validation")    
+                    os.system('''
+                            sshpass -p%(passwd)s ansible all -i host_Gridgain -u %(ads)s  -m shell -a "systemctl status gridgain | grep 'Active'" -bk
+                              ''' % locals())
+                if rc:
+                    print("Running Gridgain RC validation")  
+                    os.system('''
+                            sshpass -p%(passwd)s ansible all -i host_Gridgain -u %(ads)s  -m shell -a "echo $'\nGridgain-compute.service status\n' && systemctl status gridgain-compute.service | grep 'Active'; echo $'\nGridgain-client.service status\n' && systemctl status gridgain-client.service | grep 'Active';echo $'\nOneagent.service status\n' && systemctl status oneagent.service | grep 'Active'" -bk
                               ''' % locals())
 print("Validation Done ..... Deleting host files.......")
 os.system('''
