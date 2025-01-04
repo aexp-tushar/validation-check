@@ -1,41 +1,41 @@
-lpdosput51005,E0
-lpdosput50338,E1
-lpdosput50339,E1
-lpdosput50340,E1
-lpdosput50342,E1
-lpdosput50343,E1
-lpdosput50344,E1
-lpdosput50345,E1
-lpdosput50346,E1
-lpdosput50345,E1
-lpdospdb50052,E1
-lpqosput50087,E2
-lpqosput50088,E2
-lpqosput50089,E2
-lpqosput50076,E2
-lpqosput50077,E2
-lpqosput50086,E2
-lpqosput50078,E2
-lpqosput50079,E2
-lpqosput50078,E2
-lpqospdb00362,E2
-lpposput50058,E3-IPC1
-lpposput50059,E3-IPC1
-lpposput50060,E3-IPC1
-lpposput50049,E3-IPC1
-lpposput50050,E3-IPC1
-lpposput50051,E3-IPC1
-lpposput50052,E3-IPC1
-lpposput50053,E3-IPC1
-lgposput50065,E3-IPC2
-lgposput50074,E3-IPC2
-lgposput50075,E3-IPC2
-lgposput50056,E3-IPC2
-lgposput50057,E3-IPC2
-lgposput50058,E3-IPC2
-lgposput50059,E3-IPC2
-lgposput50060,E3-IPC2
-lgposput50059,E3-IPC2
-lgpospdb00610,E3-IPC2
-lgpospdb00584,E3-IPC2
-lgpospdb00613,E3-IPC2
+lpdosput51005,E0,NA
+lpdosput50338,E1,NGINX Content Server
+lpdosput50339,E1,NGINX Content Server
+lpdosput50340,E1,NGINX Content Server
+lpdosput50342,E1,NGINX Content Server
+lpdosput50343,E1,NGINX Content Server
+lpdosput50344,E1,NGINX Content Server
+lpdosput50345,E1,CDAAS API
+lpdosput50346,E1,CDAAS API
+lpdosput50345,E1,CDAAS Ansible
+lpdospdb50052,E1,CDAAS API DB
+lpqosput50087,E2,NGINX Content Server
+lpqosput50088,E2,NGINX Content Server
+lpqosput50089,E2,NGINX Content Server
+lpqosput50076,E2,NGINX Content Server
+lpqosput50077,E2,NGINX Content Server
+lpqosput50086,E2,NGINX Content Server
+lpqosput50078,E2,CDAAS API
+lpqosput50079,E2,CDAAS API
+lpqosput50078,E2,CDAAS Ansible
+lpqospdb00362,E2,CDAAS API DB
+lpposput50058,E3-IPC1,NGINX Content Server
+lpposput50059,E3-IPC1,NGINX Content Server
+lpposput50060,E3-IPC1,NGINX Content Server
+lpposput50049,E3-IPC1,NGINX Content Server
+lpposput50050,E3-IPC1,NGINX Content Server
+lpposput50051,E3-IPC1,NGINX Content Server
+lpposput50052,E3-IPC1,CDAAS API
+lpposput50053,E3-IPC1,CDAAS API
+lgposput50065,E3-IPC2,NGINX Content Server
+lgposput50074,E3-IPC2,NGINX Content Server
+lgposput50075,E3-IPC2,NGINX Content Server
+lgposput50056,E3-IPC2,NGINX Content Server
+lgposput50057,E3-IPC2,NGINX Content Server
+lgposput50058,E3-IPC2,NGINX Content Server
+lgposput50059,E3-IPC2,CDAAS API
+lgposput50060,E3-IPC2,CDAAS API
+lgposput50059,E3-IPC2,CDAAS Ansible
+lgpospdb00610,E3-IPC2,CDAAS API DB
+lgpospdb00584,E3-IPC2,CDAAS API DB
+lgpospdb00613,E3-IPC2,CDAAS API DB
